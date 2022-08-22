@@ -506,7 +506,7 @@ class LandRegisterModel extends ChangeNotifier {
     return val[0];
   }
 
-  registerUser(String name, String age, String city, String adhar, String pan,
+  registerUser(String name, String age, String city, String aadhar, String pan,
       String document, String email) async {
     notifyListeners();
 
@@ -519,7 +519,7 @@ class LandRegisterModel extends ChangeNotifier {
               name,
               BigInt.parse(age),
               city,
-              adhar,
+              aadhar,
               pan,
               document,
               email

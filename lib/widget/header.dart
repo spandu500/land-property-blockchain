@@ -19,7 +19,7 @@ class HeaderWidget extends StatelessWidget {
       children: <Widget>[
         // logo
         const Text(
-          'Land Registry',
+          'Land Registry Using Blockchain',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
 
@@ -191,7 +191,7 @@ class HeaderWidget extends StatelessWidget {
               child: IconButton(
                 onPressed: () {
                   launchUrl(
-                      "https://github.com/saurabh-m-w/Blockchain-Based-Property-Registration");
+                      "https://github.com/spandu500/land-property-blockchain");
                 },
                 iconSize: 30,
                 icon: Image.asset(

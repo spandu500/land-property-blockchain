@@ -284,8 +284,8 @@ class _RegisterUserState extends State<RegisterUser> {
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(12),
                         border: OutlineInputBorder(),
-                        labelText: 'Adhar',
-                        hintText: 'Enter Adhar Number',
+                        labelText: 'Aadhar',
+                        hintText: 'Enter Aadhar Number',
                       ),
                     ),
                   ),

@@ -56,14 +56,14 @@ Blockchain''',
                         )),
                   ),
                   decoration: BoxDecoration(
-                      color: const Color(0xff47afc9),
+                      color: Color.fromARGB(255, 71, 84, 201),
                       borderRadius: BorderRadius.circular(8))),
             ),
             //
             const SizedBox(width: 40),
             GestureDetector(
               onTap: () {
-                launchUrl("https://youtu.be/0Coz_ivOaHs");
+                launchUrl("https://github.com/spandu500/land-property-blockchain");
               },
               child: MouseRegion(
                 onHover: (PointerHoverEvent evt) {
@@ -82,10 +82,10 @@ Blockchain''',
                     SizedBox(
                       width: 10,
                     ),
-                    Text("Watch demo",
+                    Text("Terms and Conditions",
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          color: Color(0xff47afc9),
+                          color: Color.fromARGB(255, 71, 84, 201),
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
