@@ -28,12 +28,12 @@ class _home_pageState extends State<home_page> {
               elevation: 10,
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: 50.0, top: 15, right: 50, bottom: 15),
+                    left: 150.0, top: 15, right: 50, bottom: 15),
                 child: HeaderWidget(),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 50.0, top: 0, right: 150),
+              padding: const EdgeInsets.only(left: 150.0, top: 0, right: 150),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

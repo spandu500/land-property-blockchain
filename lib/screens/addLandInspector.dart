@@ -37,7 +37,7 @@ class _AddLandInspectorState extends State<AddLandInspector> {
     model = Provider.of<LandRegisterModel>(context);
     model2 = Provider.of<MetaMaskProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.blueGrey[200],
+      backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,

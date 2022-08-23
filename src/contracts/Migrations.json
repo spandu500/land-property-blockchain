@@ -12,7 +12,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -25,7 +26,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -48,7 +50,7 @@
   "sourceMap": "69:367:0:-:0;;;117:10;94:33;;;;;;;;;;;;;;;;;;;;69:367;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "69:367:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;132:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;94:33;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;328:105;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;132:36;;;;:::o;94:33::-;;;;;;;;;;;;:::o;328:105::-;234:5;;;;;;;;;;220:19;;:10;:19;;;204:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;418:9:::1;391:24;:36;;;;328:105:::0;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Migrations {\r\n  address public owner = msg.sender;\r\n  uint public last_completed_migration;\r\n\r\n  modifier restricted() {\r\n    require(\r\n      msg.sender == owner,\r\n      \"This function is restricted to the contract's owner\"\r\n    );\r\n    _;\r\n  }\r\n\r\n  function setCompleted(uint completed) public restricted {\r\n    last_completed_migration = completed;\r\n  }\r\n}\r\n",
-  "sourcePath": "D:\\land-property-blockchain\\contracts\\Migrations.sol",
+  "sourcePath": "D:\\Blockchain-Based-Property-Registration\\contracts\\Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -944,8 +946,9 @@
       "transactionHash": "0x629b14bd5ab4f35d71d5737d643f1c0f079cb5bf6a497971d946042de057c5d8"
     }
   },
-  "schemaVersion": "3.4.8",
-  "updatedAt": "2022-07-11T05:11:50.360Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-07-08T13:58:18.940Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
