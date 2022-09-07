@@ -84,7 +84,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.15.0"
+    version: "1.16.0"
   convert:
     dependency: transitive
     description:
@@ -126,14 +126,7 @@ packages:
       name: eip55
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
-  fake_async:
-    dependency: transitive
-    description:
-      name: fake_async
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
+    version: "1.0.2"
   ffi:
     dependency: transitive
     description:
@@ -261,13 +254,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.0"
   json_rpc_2:
     dependency: transitive
     description:
@@ -330,7 +316,7 @@ packages:
       name: material_color_utilities
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.3"
+    version: "0.1.4"
   meta:
     dependency: transitive
     description:
@@ -351,7 +337,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   path_drawing:
     dependency: transitive
     description:
@@ -462,13 +448,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  test_api:
-    dependency: transitive
-    description:
-      name: test_api
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.9"
   typed_data:
     dependency: transitive
     description:
@@ -567,13 +546,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  watcher:
-    dependency: transitive
-    description:
-      name: watcher
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   web3dart:
     dependency: "direct main"
     description:
@@ -596,5 +568,5 @@ packages:
     source: hosted
     version: "6.1.0"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.5.0"
+  dart: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"

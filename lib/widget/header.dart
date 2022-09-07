@@ -18,8 +18,25 @@ class HeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         // logo
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: IconButton(
+            onPressed: () {
+              launchUrl(
+                  "https://github.com/spandu500/land-property-blockchain");
+            },
+            iconSize: 30,
+            icon: Image.asset(
+              'assets/goi.svg',
+              color: Colors.black,
+              height: 30,
+              width: 30,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
         const Text(
-          'Land Registry Using Blockchain',
+          'Ministry of Rural and Land Development',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
 
@@ -27,7 +44,7 @@ class HeaderWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(4.0),
               child: InkWell(
                 child: MouseRegion(
                   onHover: (PointerHoverEvent evt) {
@@ -73,7 +90,7 @@ class HeaderWidget extends StatelessWidget {
                     appContainer?.style.cursor = 'default';
                   },
                   child: const Text(
-                    'User',
+                    'User Login',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Color(0xff28313b),
@@ -109,7 +126,7 @@ class HeaderWidget extends StatelessWidget {
                     appContainer?.style.cursor = 'default';
                   },
                   child: const Text(
-                    'Land Inspector',
+                    'Officials login',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Color(0xff28313b),
@@ -145,7 +162,7 @@ class HeaderWidget extends StatelessWidget {
                     appContainer?.style.cursor = 'default';
                   },
                   child: const Text(
-                    'Contract Owner',
+                    'Govt login',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Color(0xff28313b),
