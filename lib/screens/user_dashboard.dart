@@ -1117,7 +1117,7 @@ Widget sentRequest() {
               CustomTextFiled(userInfo[1].toString(), 'Name'),
               CustomTextFiled(userInfo[2].toString(), 'Age'),
               CustomTextFiled(userInfo[3].toString(), 'City'),
-              CustomTextFiled(userInfo[4].toString(), 'Adhar Number'),
+              CustomTextFiled(userInfo[4].toString(), 'Aadhar Number'),
               CustomTextFiled(userInfo[5].toString(), 'Pan'),
               TextButton(
                 onPressed: () {

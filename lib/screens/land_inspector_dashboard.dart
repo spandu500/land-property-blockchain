@@ -361,7 +361,7 @@ class _LandInspectorState extends State<LandInspector> {
                     ),
                     Expanded(
                       child: Center(
-                        child: Text('Adhar',
+                        child: Text('Aadhar',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       flex: 2,

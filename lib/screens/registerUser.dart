@@ -20,7 +20,7 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  late String name, age, city, adharNumber, panNumber, document, email;
+  late String name, age, city, aadharNumber, panNumber, document, email;
 
   double width = 590;
   final _formKey = GlobalKey<FormState>();
@@ -263,9 +263,9 @@ class _RegisterUserState extends State<RegisterUser> {
                     child: TextFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter Adhar number';
+                          return 'Please enter Aadhar number';
                         } else if (value.length != 12)
-                          return 'Please enter Valid Adhar number';
+                          return 'Please enter Valid Aadhar number';
                         return null;
                       },
                       //maxLength: 12,
@@ -277,7 +277,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                       ],
                       onChanged: (val) {
-                        adharNumber = val;
+                        aadharNumber = val;
                       },
                       //obscureText: true,
                       decoration: const InputDecoration(
@@ -296,7 +296,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter Pan Number';
                         } else if (value.length != 10)
-                          return 'Please enter Valid Adhar number';
+                          return 'Please enter Valid Pan number';
                         return null;
                       },
                       style: const TextStyle(
@@ -391,7 +391,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                               name,
                                               age,
                                               addressController.text,
-                                              adharNumber,
+                                              aadharNumber,
                                               panNumber,
                                               docUrl,
                                               email);
@@ -400,7 +400,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                               name,
                                               age,
                                               addressController.text,
-                                              adharNumber,
+                                              aadharNumber,
                                               panNumber,
                                               docUrl,
                                               email);

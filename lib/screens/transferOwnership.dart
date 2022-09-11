@@ -631,7 +631,7 @@ class _transferOwnershipState extends State<transferOwnership> {
           CustomTextFiled(name.toString(), 'Name'),
           CustomTextFiled(age.toString(), 'Age'),
           CustomTextFiled(city.toString(), 'City'),
-          CustomTextFiled(adhar.toString(), 'Adhar Number'),
+          CustomTextFiled(adhar.toString(), 'Aadhar Number'),
           CustomTextFiled(pan.toString(), 'Pan'),
           TextButton(
             onPressed: () {

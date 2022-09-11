@@ -25,7 +25,7 @@ Widget landWid(isverified, area, address, price, isForSell, makeforSellFun) =>
           Container(
             height: 200,
             width: 400,
-            color: Colors.lightGreenAccent,
+            color: Color.fromARGB(255, 89, 161, 255),
             child: Image.asset(
               'assets/landimg.jpg',
               fit: BoxFit.fill,
@@ -116,7 +116,7 @@ Widget landWid2(isverified, area, address, price, isMyLand, isForSell,
           Container(
             height: 200,
             width: 400,
-            color: Colors.lightGreenAccent,
+            color: Color.fromARGB(255, 89, 175, 255),
             child: Image.asset(
               'assets/landimg.jpg',
               fit: BoxFit.fill,
