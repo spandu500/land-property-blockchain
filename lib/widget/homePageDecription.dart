@@ -6,7 +6,7 @@ import 'package:universal_html/html.dart' as html;
 import '../constant/utils.dart';
 
 class LeftDescription extends StatelessWidget {
-  const LeftDescription({Key? key}) : super(key: key);
+    const LeftDescription({Key? key}) : super(key: key);
   static final appContainer = kIsWeb
       ? html.window.document.querySelectorAll('flt-glass-pane')[0]
       : null;
@@ -20,12 +20,11 @@ class LeftDescription extends StatelessWidget {
         // title
         const FittedBox(
           child: Text('''Land
-Registration Using
-Blockchain''',
+Registration ''',
               style: TextStyle(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
                 color: Color(0xff28313b),
-                fontSize: 50,
+                fontSize: 55,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
                 //letterSpacing: 1.5,
@@ -47,7 +46,7 @@ Blockchain''',
                   child: const Center(
                     child: Text("Learn More",
                         style: TextStyle(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Montserrat',
                           color: Color(0xffffffff),
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -63,7 +62,8 @@ Blockchain''',
             const SizedBox(width: 40),
             GestureDetector(
               onTap: () {
-                launchUrl("https://github.com/spandu500/land-property-blockchain");
+                launchUrl(
+                    "https://github.com/spandu500/land-property-blockchain");
               },
               child: MouseRegion(
                 onHover: (PointerHoverEvent evt) {
@@ -84,7 +84,7 @@ Blockchain''',
                     ),
                     Text("Terms and Conditions",
                         style: TextStyle(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Montserrat',
                           color: Color.fromARGB(255, 71, 84, 201),
                           fontSize: 14,
                           fontWeight: FontWeight.w400,

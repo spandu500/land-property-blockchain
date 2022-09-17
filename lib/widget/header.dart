@@ -17,34 +17,34 @@ class HeaderWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        // logo
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: IconButton(
-            onPressed: () {
-              launchUrl(
-                  "https://github.com/spandu500/land-property-blockchain");
-            },
-            iconSize: 30,
-            icon: Image.asset(
-              'assets/goi.svg',
-              color: Colors.black,
-              height: 30,
-              width: 30,
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
+        // // logo
+        // Padding(
+        //   padding: const EdgeInsets.all(1.0),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       launchUrl(
+        //           "https://github.com/spandu500/land-property-blockchain");
+        //     },
+        //     iconSize: 30,
+        //     icon: Image.asset(
+        //       'assets/goi.png',
+        //       //color: Colors.black,
+        //       height: 150,
+        //       width: 150,
+        //       fit: BoxFit.fitHeight,
+        //     ),
+        //   ),
+        // ),
         const Text(
           'Ministry of Rural and Land Development',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(1.0),
               child: InkWell(
                 child: MouseRegion(
                   onHover: (PointerHoverEvent evt) {
@@ -56,7 +56,7 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'Home',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                       color: Color(0xff28313b),
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -92,7 +92,7 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'User Login',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                       color: Color(0xff28313b),
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -128,7 +128,7 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'Officials login',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                       color: Color(0xff28313b),
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -164,7 +164,7 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'Govt login',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                       color: Color(0xff28313b),
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -192,7 +192,7 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'About',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                       color: Color(0xff28313b),
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -212,11 +212,11 @@ class HeaderWidget extends StatelessWidget {
                 },
                 iconSize: 30,
                 icon: Image.asset(
-                  'assets/github-logo.png',
-                  color: Colors.black,
-                  width: 60.0,
-                  height: 60.0,
-                  fit: BoxFit.fill,
+                  'assets/goi.png',
+                  //color: Colors.black,
+                  width: 150.0,
+                  height: 150.0,
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),

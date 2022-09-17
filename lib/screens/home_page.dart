@@ -44,7 +44,7 @@ class _home_pageState extends State<home_page> {
                       width: 600,
                       height: 804,
                       child: SvgPicture.asset(
-                        'assets/background_svg.svg',
+                        'assets/in.svg',
                         height: 20.0,
                         width: 20.0,
                         allowDrawingOutsideViewBox: true,
