@@ -102,46 +102,46 @@ class HeaderWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const CheckPrivateKey(
-                  //               val: "LandInspector",
-                  //             )));
-                  Navigator.of(context).pushNamed(
-                    '/login',
-                    arguments: "LandInspector",
-                  );
-                },
-                child: MouseRegion(
-                  onHover: (PointerHoverEvent evt) {
-                    appContainer?.style.cursor = 'pointer';
+              ),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const CheckPrivateKey(
+                    //               val: "LandInspector",
+                    //             )));
+                    Navigator.of(context).pushNamed(
+                      '/login',
+                      arguments: "LandInspector",
+                    );
                   },
-                  onExit: (PointerExitEvent evt) {
-                    appContainer?.style.cursor = 'default';
-                  },
-                  child: const Text(
-                    'Officials login',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      letterSpacing: 1.627907,
+                  child: MouseRegion(
+                    onHover: (PointerHoverEvent evt) {
+                      appContainer?.style.cursor = 'pointer';
+                    },
+                    onExit: (PointerExitEvent evt) {
+                      appContainer?.style.cursor = 'default';
+                    },
+                    child: const Text(
+                      'Officials login',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Color(0xff28313b),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        letterSpacing: 1.627907,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: GestureDetector(
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: GestureDetector(
                 onTap: () {
                   // Navigator.push(
                   //     context,

@@ -33,7 +33,7 @@ class _home_pageState extends State<home_page> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 150.0, top: 0, right: 150),
+              padding: const EdgeInsets.only(left: 200, top: 0, right: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,10 +41,11 @@ class _home_pageState extends State<home_page> {
                   const LeftDescription(),
                   Center(
                     child: Container(
-                      width: 600,
-                      height: 804,
+                      width: 1000,
+                      height: 1000,
                       child: SvgPicture.asset(
                         'assets/in.svg',
+                        //color: Color.fromARGB(255, 255, 169, 98),
                         height: 20.0,
                         width: 20.0,
                         allowDrawingOutsideViewBox: true,

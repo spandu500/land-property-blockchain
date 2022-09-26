@@ -60,7 +60,7 @@ class _LandInspectorState extends State<LandInspector> {
       appBar: AppBar(
         title: const Text("LandInspector Dashboard"),
         centerTitle: true,
-        backgroundColor: const Color(0xFF272D34),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         leading: isDesktop
             ? Container()
             : GestureDetector(
@@ -717,7 +717,7 @@ class _LandInspectorState extends State<LandInspector> {
         boxShadow: [
           BoxShadow(blurRadius: 10, color: Colors.black26, spreadRadius: 2)
         ],
-        color: Color(0xFF272D34),
+        color: Color.fromARGB(255, 248, 112, 0),
       ),
       width: 250,
       child: Column(

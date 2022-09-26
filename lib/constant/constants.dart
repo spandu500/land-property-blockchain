@@ -8,6 +8,6 @@ const String rpcUrl = "HTTP://127.0.0.1:7545";
 //"http://127.0.0.1:7545";
 
 const String contractAddress =
-    "0x2d3dd4c46bECA12D67EFC18926DA4EE64E9CF7f5"; //change to refect the contract address after running truffle migrate locally
+    "0xF7D4865a2346b9FF0D7490d5B95b00dE4B22636e"; //change to refect the contract address after running truffle migrate locally
 
 const int chainId = 1337; //Ropsten-3, Polygon testnet-80001, local ganache-1337
