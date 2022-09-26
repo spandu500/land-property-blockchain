@@ -309,7 +309,7 @@ class _AddLandInspectorState extends State<AddLandInspector> {
                       border: OutlineInputBorder(),
                       labelText: 'Address',
                       hintText:
-                          'Enter Land Inspector Address(0xc5aEabE793B923981fc401bb8da620FDAa45ea2B)',
+                          'Inspector Address',
                     ),
                   ),
                 ),
@@ -339,6 +339,9 @@ class _AddLandInspectorState extends State<AddLandInspector> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter some text';
+                      }
+                      if (int.parse(value) < 30){
+                          return 'Your are below the minimum age of 30 years';
                       }
                       return null;
                     },

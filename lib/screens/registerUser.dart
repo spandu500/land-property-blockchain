@@ -20,7 +20,7 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  late String name, age, city, aadharNumber, panNumber, document, email;
+  late String name, age, city, adharNumber, panNumber, document, email;
 
   double width = 590;
   final _formKey = GlobalKey<FormState>();
@@ -100,7 +100,7 @@ class _RegisterUserState extends State<RegisterUser> {
   pickDocument() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf'],
+      allowedExtensions: ['jpg', 'pdf','png'],
     );
 
     if (result != null) {
@@ -128,7 +128,7 @@ class _RegisterUserState extends State<RegisterUser> {
         }
       } catch (e) {
         print(e);
-        showToast("Something went wrong,while document uploading",
+        showToast("Something went wrong, while uploading documents",
             context: context, backgroundColor: Colors.red);
       }
     } else {
@@ -149,7 +149,7 @@ class _RegisterUserState extends State<RegisterUser> {
         elevation: 0,
         centerTitle: true,
         title: const Text(
-          'User Registration',
+          'Civilian User Registration',
         ),
       ),
       body: Center(
@@ -194,6 +194,9 @@ class _RegisterUserState extends State<RegisterUser> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter age';
+                        }
+                        if (int.parse(value) < 18){
+                          return 'Your are below the minimum age of 18 years';
                         }
                         return null;
                       },
@@ -277,7 +280,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                       ],
                       onChanged: (val) {
-                        aadharNumber = val;
+                        adharNumber = val;
                       },
                       //obscureText: true,
                       decoration: const InputDecoration(
@@ -296,7 +299,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter Pan Number';
                         } else if (value.length != 10)
-                          return 'Please enter Valid Pan number';
+                          return 'Please enter Valid PAN number';
                         return null;
                       },
                       style: const TextStyle(
@@ -312,8 +315,8 @@ class _RegisterUserState extends State<RegisterUser> {
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(12),
                         border: OutlineInputBorder(),
-                        labelText: 'Pan',
-                        hintText: 'Enter Pan Number',
+                        labelText: 'PAN',
+                        hintText: 'Enter PAN Number',
                       ),
                     ),
                   ),
@@ -324,7 +327,8 @@ class _RegisterUserState extends State<RegisterUser> {
                         MaterialButton(
                           color: Colors.grey,
                           onPressed: pickDocument,
-                          child: const Text('Upload Document'),
+                          child: const Text('Upload Document (jpg, png, pdf only)'),
+                          
                         ),
                         Text(docuName)
                       ],
@@ -371,7 +375,7 @@ class _RegisterUserState extends State<RegisterUser> {
                           );
                         })
                       : CustomButton(
-                          'Add',
+                          'Create Account',
                           isLoading
                               ? null
                               : () async {
@@ -391,7 +395,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                               name,
                                               age,
                                               addressController.text,
-                                              aadharNumber,
+                                              adharNumber,
                                               panNumber,
                                               docUrl,
                                               email);
@@ -400,7 +404,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                               name,
                                               age,
                                               addressController.text,
-                                              aadharNumber,
+                                              adharNumber,
                                               panNumber,
                                               docUrl,
                                               email);

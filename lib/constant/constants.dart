@@ -4,10 +4,11 @@ String mapBoxApiKey =
 String nftStorageApiKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDBBODI5QTE0OTA4NUY3MTA0NTRDOEQ3RTM5RUEzMGJhMmMzY0RhNTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1NzI4OTI3MTU4MSwibmFtZSI6Im1ham9yIn0.3clRVZr144PWBqoiHUw7tAq91z07gWOs3bLXohqpdfI';
 
-const String rpcUrl = "HTTP://127.0.0.1:7545";
-//"http://127.0.0.1:7545";
+const String rpcUrl =
+    //"https://ropsten.infura.io/v3/e43345b7383246378963be7acd5b6c67";
+"http://127.0.0.1:7545";
 
-const String contractAddress =
-    "0xF7D4865a2346b9FF0D7490d5B95b00dE4B22636e"; //change to refect the contract address after running truffle migrate locally
+//const String contractAddress = "0xcc7B233CbE4aE5aDdf31BEE5238384Bd7EE61db0";
+const String contractAddress = "0xb7C49F86b0b1C77e5D77274138b4831ca2968424";
 
 const int chainId = 1337; //Ropsten-3, Polygon testnet-80001, local ganache-1337

@@ -28,12 +28,12 @@ class _home_pageState extends State<home_page> {
               elevation: 10,
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: 150.0, top: 15, right: 50, bottom: 15),
+                    left: 50.0, top: 15, right: 50, bottom: 15),
                 child: HeaderWidget(),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 200, top: 0, right: 0),
+              padding: const EdgeInsets.only(left: 150.0, top: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,11 +41,11 @@ class _home_pageState extends State<home_page> {
                   const LeftDescription(),
                   Center(
                     child: Container(
-                      width: 1000,
-                      height: 1000,
+                      width: 600,
+                      height: 804,
                       child: SvgPicture.asset(
-                        'assets/in.svg',
-                        //color: Color.fromARGB(255, 255, 169, 98),
+                        'assets/in2.svg',
+                        //color: Color.fromARGB(255,225, 169, 98),
                         height: 20.0,
                         width: 20.0,
                         allowDrawingOutsideViewBox: true,
@@ -61,7 +61,7 @@ class _home_pageState extends State<home_page> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomAnimatedContainer('Contract Owner', () {
+                CustomAnimatedContainer('Ministry of Rural Development', () {
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(
@@ -73,7 +73,7 @@ class _home_pageState extends State<home_page> {
                     arguments: "owner",
                   );
                 }),
-                CustomAnimatedContainer('Land Inspector', () {
+                CustomAnimatedContainer('Govt Official Login', () {
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(
@@ -85,7 +85,7 @@ class _home_pageState extends State<home_page> {
                     arguments: "LandInspector",
                   );
                 }),
-                CustomAnimatedContainer('User', () {
+                CustomAnimatedContainer('User Login', () {
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(

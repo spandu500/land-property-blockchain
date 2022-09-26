@@ -60,7 +60,7 @@ class _LandInspectorState extends State<LandInspector> {
       appBar: AppBar(
         title: const Text("LandInspector Dashboard"),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(105, 0, 0, 0),
         leading: isDesktop
             ? Container()
             : GestureDetector(
@@ -183,7 +183,7 @@ class _LandInspectorState extends State<LandInspector> {
                   ),
                   Expanded(
                     child: Center(
-                      child: Text('Price',
+                      child: Text('Price in ₹',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     flex: 2,
@@ -717,7 +717,7 @@ class _LandInspectorState extends State<LandInspector> {
         boxShadow: [
           BoxShadow(blurRadius: 10, color: Colors.black26, spreadRadius: 2)
         ],
-        color: Color.fromARGB(255, 248, 112, 0),
+        color: Color.fromARGB(105, 0, 0, 0),
       ),
       width: 250,
       child: Column(

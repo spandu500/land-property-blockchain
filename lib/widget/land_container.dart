@@ -25,7 +25,7 @@ Widget landWid(isverified, area, address, price, isForSell, makeforSellFun) =>
           Container(
             height: 200,
             width: 400,
-            color: Color.fromARGB(255, 89, 161, 255),
+            color: Colors.lightGreenAccent,
             child: Image.asset(
               'assets/landimg.jpg',
               fit: BoxFit.fill,
@@ -62,12 +62,19 @@ Widget landWid(isverified, area, address, price, isForSell, makeforSellFun) =>
             height: 10,
           ),
           Text(
-            'Price:' + price,
+            'Price in Rs:' + price,
             style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(
             height: 10,
           ),
+          // Text(
+          //   'Price in ETH:' + price/104066.45,
+          //   style: const TextStyle(fontSize: 20),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -75,12 +82,12 @@ Widget landWid(isverified, area, address, price, isForSell, makeforSellFun) =>
                   ? MaterialButton(
                       color: Colors.redAccent,
                       onPressed: null,
-                      child: const Text('On Sell'),
+                      child: const Text('On Sale'),
                     )
                   : MaterialButton(
                       color: Colors.redAccent,
                       onPressed: isverified ? makeforSellFun : null,
-                      child: const Text('Make it for Sell'),
+                      child: const Text('Make it for Sale'),
                     ),
               MaterialButton(
                 color: Colors.blueAccent,
@@ -116,7 +123,7 @@ Widget landWid2(isverified, area, address, price, isMyLand, isForSell,
           Container(
             height: 200,
             width: 400,
-            color: Color.fromARGB(255, 89, 175, 255),
+            color: Colors.lightGreenAccent,
             child: Image.asset(
               'assets/landimg.jpg',
               fit: BoxFit.fill,

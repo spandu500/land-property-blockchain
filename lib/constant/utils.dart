@@ -67,7 +67,7 @@ getEthToInr() async {
     print("ETH to INR " + priceInr.toStringAsFixed(3));
   } catch (e) {
     print(e);
-    ethToInr = 329172.649;
+    ethToInr = 104066.45;
   }
 }
 
@@ -148,7 +148,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (text == 'Contract Owner')
+              if (text == 'Ministry of Rural Development')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -158,7 +158,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
                     fit: BoxFit.fill,
                   ),
                 ),
-              if (text == 'Land Inspector')
+              if (text == 'Govt Official Login')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -168,7 +168,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
                     fit: BoxFit.fill,
                   ),
                 ),
-              if (text == 'User')
+              if (text == 'User Login')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -199,7 +199,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (text == 'Contract Owner')
+              if (text == 'Ministry of Rural Development')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -209,7 +209,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
                     fit: BoxFit.fill,
                   ),
                 ),
-              if (text == 'Land Inspector')
+              if (text == 'Govt Official Login')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -219,7 +219,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
                     fit: BoxFit.fill,
                   ),
                 ),
-              if (text == 'User')
+              if (text == 'User Login')
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
