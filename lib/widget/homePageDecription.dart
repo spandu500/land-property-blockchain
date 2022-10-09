@@ -23,84 +23,84 @@ class LeftDescription extends StatelessWidget {
 Registration for 
 Citizens of India''',
               style: TextStyle(
-                fontFamily: 'Poppins',
+                fontFamily: 'Quicksand',
                 color: Color(0xff28313b),
-                fontSize: 50,
-                fontWeight: FontWeight.w400,
+                fontSize: 100,
+                fontWeight: FontWeight.w900,
                 fontStyle: FontStyle.normal,
                 //letterSpacing: 1.5,
               )),
         ),
         // Description
 
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: <Widget>[
-            // button
-            InkWell(
-              onTap: () {},
-              child: Container(
-                  width: 150,
-                  height: 57,
-                  child: const Center(
-                    child: Text("Learn More",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Color(0xffffffff),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          letterSpacing: 2,
-                        )),
-                  ),
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 71, 84, 201),
-                      borderRadius: BorderRadius.circular(8))),
-            ),
-            //
-            const SizedBox(width: 40),
-            GestureDetector(
-              onTap: () {
-                launchUrl("google.com");
-              },
-              child: MouseRegion(
-                onHover: (PointerHoverEvent evt) {
-                  appContainer?.style.cursor = 'pointer';
-                },
-                onExit: (PointerExitEvent evt) {
-                  appContainer?.style.cursor = 'default';
-                },
-                child: Row(
-                  children: const [
-                    SizedBox(
-                      width: 34,
-                      height: 34,
-                      child: Icon(Icons.play_circle_fill),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("Watch demo",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Color(0xff47afc9),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          letterSpacing: 2,
-                        ))
-                  ],
+        // const SizedBox(
+        //   height: 20,
+        // ),
+        // Row(
+        //   children: <Widget>[
+        //     // button
+        //     InkWell(
+        //       onTap: () {},
+        //       child: Container(
+        //           width: 150,
+        //           height: 57,
+        //           child: const Center(
+        //             child: Text("",
+        //                 style: TextStyle(
+        //                   fontFamily: 'Quicksand',
+        //                   color: Color(0xffffffff),
+        //                   fontSize: 14,
+        //                   fontWeight: FontWeight.w400,
+        //                   fontStyle: FontStyle.normal,
+        //                   letterSpacing: 2,
+        //                 )),
+        //           ),
+        //           decoration: BoxDecoration(
+        //               color: Color.fromARGB(255, 71, 84, 201),
+        //               borderRadius: BorderRadius.circular(8))),
+        //     ),
+        //     //
+        const SizedBox(width: 40),
+        GestureDetector(
+          onTap: () {
+            launchUrl("google.com");
+          },
+          child: MouseRegion(
+            onHover: (PointerHoverEvent evt) {
+              appContainer?.style.cursor = 'pointer';
+            },
+            onExit: (PointerExitEvent evt) {
+              appContainer?.style.cursor = 'default';
+            },
+            child: Row(
+              children: const [
+                SizedBox(
+                  width: 34,
+                  height: 34,
+                  child: Icon(Icons.play_circle_fill),
                 ),
-              ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text("",
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Color(0xff47afc9),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      letterSpacing: 2,
+                    ))
+              ],
             ),
-          ],
+          ),
         ),
-        const SizedBox(
-          height: 100,
-        )
       ],
     );
+    //     const SizedBox(
+    //       height: 00,
+    //     )
+    //   ],
+    // );
   }
 }

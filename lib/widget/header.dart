@@ -19,25 +19,24 @@ class HeaderWidget extends StatelessWidget {
       children: <Widget>[
         // logo
         Padding(
-          padding: const EdgeInsets.all(14.0),
+          padding: const EdgeInsets.all(8.0),
           child: IconButton(
             onPressed: () {
-              launchUrl(
-                      "https://dolr.gov.in/");
+              launchUrl("https://dolr.gov.in/");
             },
             iconSize: 80,
             icon: Image.asset(
-              'assets/github-logo.png',
+              'assets/emblem-dark.png',
               //color: Colors.black,
-              width: 150.0,
-              height: 150.0,
+              //width: 150.0,
+              //height: 150.0,
               fit: BoxFit.fitHeight,
             ),
           ),
         ),
         const Text(
-          'Ministry of Land Development of India',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          'Department of Land Records                  ',
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 35),
         ),
 
         Row(
@@ -54,12 +53,12 @@ class HeaderWidget extends StatelessWidget {
                     appContainer?.style.cursor = 'default';
                   },
                   child: const Text(
-                    'Home',
+                    'Guest',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1.627907,
                     ),
@@ -92,10 +91,10 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'User Login',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1.627907,
                     ),
@@ -128,10 +127,10 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'Govt Official Login',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1.627907,
                     ),
@@ -164,10 +163,10 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     'Ministry of Rural Development',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1.627907,
                     ),
@@ -192,10 +191,10 @@ class HeaderWidget extends StatelessWidget {
                   child: const Text(
                     ' ',
                     style: TextStyle(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
                       fontStyle: FontStyle.normal,
                       letterSpacing: 1.627907,
                     ),
