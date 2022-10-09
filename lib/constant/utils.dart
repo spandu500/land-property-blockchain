@@ -67,7 +67,7 @@ getEthToInr() async {
     print("ETH to INR " + priceInr.toStringAsFixed(3));
   } catch (e) {
     print(e);
-    ethToInr = 104066.45;
+    ethToInr = 109368.72;
   }
 }
 
@@ -105,7 +105,7 @@ Widget CustomButton2(text, fun) => Container(
               text,
               style: const TextStyle(
                 fontSize: 15,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ),
@@ -127,7 +127,7 @@ Widget CustomButton3(text, fun, color) => Container(
               text,
               style: TextStyle(
                 fontSize: 15,
-                color: color == Colors.white ? Colors.black : Colors.white,
+                color: color == Colors.blue ? Colors.black : Colors.blue,
               ),
             ),
           ),
@@ -141,7 +141,7 @@ Widget CustomAnimatedContainer(text, fun) => Padding(
           height: 270,
           width: 250,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.blue,
               border: Border.all(color: Colors.black54, width: 2),
               borderRadius: const BorderRadius.all(Radius.circular(13))),
           child: Center(
