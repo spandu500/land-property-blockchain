@@ -55,50 +55,50 @@ class _home_pageState extends State<home_page> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 100,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomAnimatedContainer('Ministry of Rural Development', () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const CheckPrivateKey(
-                  //               val: "owner",
-                  //             )));
-                  Navigator.of(context).pushNamed(
-                    '/login',
-                    arguments: "owner",
-                  );
-                }),
-                CustomAnimatedContainer('Govt Official Login', () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const CheckPrivateKey(
-                  //               val: "LandInspector",
-                  //             )));
-                  Navigator.of(context).pushNamed(
-                    '/login',
-                    arguments: "LandInspector",
-                  );
-                }),
-                CustomAnimatedContainer('User Login', () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const CheckPrivateKey(
-                  //               val: "UserLogin",
-                  //             )));
-                  Navigator.of(context).pushNamed(
-                    '/login',
-                    arguments: "UserLogin",
-                  );
-                }),
-              ],
-            ),
+            // const SizedBox(
+            //   height: 100,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     CustomAnimatedContainer('Ministry of Rural Development', () {
+            //       // Navigator.push(
+            //       //     context,
+            //       //     MaterialPageRoute(
+            //       //         builder: (context) => const CheckPrivateKey(
+            //       //               val: "owner",
+            //       //             )));
+            //       Navigator.of(context).pushNamed(
+            //         '/login',
+            //         arguments: "owner",
+            //       );
+            //     }),
+            //     CustomAnimatedContainer('Govt Official Login', () {
+            //       // Navigator.push(
+            //       //     context,
+            //       //     MaterialPageRoute(
+            //       //         builder: (context) => const CheckPrivateKey(
+            //       //               val: "LandInspector",
+            //       //             )));
+            //       Navigator.of(context).pushNamed(
+            //         '/login',
+            //         arguments: "LandInspector",
+            //       );
+            //     }),
+            //     CustomAnimatedContainer('User Login', () {
+            //       // Navigator.push(
+            //       //     context,
+            //       //     MaterialPageRoute(
+            //       //         builder: (context) => const CheckPrivateKey(
+            //       //               val: "UserLogin",
+            //       //             )));
+            //       Navigator.of(context).pushNamed(
+            //         '/login',
+            //         arguments: "UserLogin",
+            //       );
+            //     }),
+            //   ],
+            // ),
             const SizedBox(
               height: 100,
             ),
