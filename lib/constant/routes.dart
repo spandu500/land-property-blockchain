@@ -10,6 +10,11 @@ class RoutesName {
   static const String HOME_PAGE = '/';
   static const String LOGIN_PAGE = '/login';
   static const String USER_PAGE = '/userdahsboard';
+  // static const String LAND_INSPECTOR_PAGE = '/landinspector';
+  // static const String ADD_LAND_INSPECTOR_PAGE = '/addlandinspector';
+  // static const String REGISTER_USER_PAGE = '/registeruser';
+  // static const String WALLET_CONNECT_PAGE = '/walletconnect';
+  static const String GUEST_PAGE = '/guest'; 
 }
 
 class RouteGenerator {
