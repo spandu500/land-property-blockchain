@@ -44,7 +44,20 @@ class HeaderWidget extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(14.0),
-              child: InkWell(
+              //  child: GestureDetector(
+              //   onTap: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const CheckPrivateKey(
+              //                   val: "UserLogin",
+              //                 )));
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/guest',
+                  arguments: "guest",
+                  );
+                },
                 child: MouseRegion(
                   onHover: (PointerHoverEvent evt) {
                     appContainer?.style.cursor = 'pointer';

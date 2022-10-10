@@ -13,7 +13,7 @@ showLoaderDialog(BuildContext context) {
         const CircularProgressIndicator(),
         Container(
             margin: const EdgeInsets.only(left: 7),
-            child: const Text("Loading...")),
+            child: const Text("Loading Application Please Wait...")),
       ],
     ),
   );

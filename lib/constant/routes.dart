@@ -14,7 +14,7 @@ class RoutesName {
   // static const String ADD_LAND_INSPECTOR_PAGE = '/addlandinspector';
   // static const String REGISTER_USER_PAGE = '/registeruser';
   // static const String WALLET_CONNECT_PAGE = '/walletconnect';
-  static const String GUEST_PAGE = '/guest'; 
+  // static const String GUEST_PAGE = '/guest'; 
 }
 
 class RouteGenerator {
@@ -40,6 +40,11 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) => const home_page(),
             settings: const RouteSettings(name: '/'));
+           case '/guest':
+        return MaterialPageRoute(
+          builder: (_) => const UserDashBoard(),
+          settings: const RouteSettings(name: '/guest'),
+        );
       case '/user':
         return MaterialPageRoute(
           builder: (_) => const UserDashBoard(),
