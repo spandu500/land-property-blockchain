@@ -48,13 +48,13 @@ class _UserDashBoardState extends State<UserDashBoard> {
   List<List<dynamic>> sentRequestInfo = [];
   List<dynamic> prices = [];
   List<Menu> menuItems = [
-    //Menu(title: 'Dashboard', icon: Icons.dashboard),
-    //Menu(title: 'Add Lands', icon: Icons.add_chart),
-    //Menu(title: 'My Lands', icon: Icons.landscape_rounded),
+    // Menu(title: 'Dashboard', icon: Icons.dashboard),
+    // Menu(title: 'Add Lands', icon: Icons.add_chart),
+    // Menu(title: 'My Lands', icon: Icons.landscape_rounded),
     Menu(title: 'Land Gallery', icon: Icons.landscape_rounded),
-    //Menu(title: 'My Received Request', icon: Icons.request_page_outlined),
-    //Menu(title: 'My Sent Land Request', icon: Icons.request_page_outlined),
-    //Menu(title: 'Logout', icon: Icons.logout),
+    // Menu(title: 'My Received Request', icon: Icons.request_page_outlined),
+    // Menu(title: 'My Sent Land Request', icon: Icons.request_page_outlined),
+    // Menu(title: 'Logout', icon: Icons.logout),
   ];
   Map<String, String> requestStatus = {
     '0': 'Pending',
@@ -138,7 +138,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
       isLoading = true;
     });
     List<dynamic> landList;
-    if (!connectedWithMetamask) {
+    if (connectedWithMetamask) {
       landList = await model2.myAllLands();
     } else {
       landList = await model.myAllLands();
@@ -147,7 +147,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
     List<List<dynamic>> info = [];
     List<dynamic> temp;
     for (int i = 0; i < landList.length; i++) {
-      if (!connectedWithMetamask) {
+      if (connectedWithMetamask) {
         temp = await model2.landInfo(landList[i]);
       } else {
         temp = await model.landInfo(landList[i]);
@@ -168,7 +168,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
       LandGall = [];
     });
     List<dynamic> landList;
-    if (!connectedWithMetamask) {
+    if (connectedWithMetamask) {
       landList = await model2.allLandList();
     } else {
       landList = await model.allLandList();
@@ -177,7 +177,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
     // List<List<dynamic>> allInfo = [];
     List<dynamic> temp;
     for (int i = 0; i < landList.length; i++) {
-      if (!connectedWithMetamask) {
+      if (connectedWithMetamask) {
         temp = await model2.landInfo(landList[i]);
       } else {
         temp = await model.landInfo(landList[i]);
@@ -191,6 +191,137 @@ class _UserDashBoardState extends State<UserDashBoard> {
     isLoading = false;
     setState(() {});
   }
+
+  getMySentRequest() async {
+    //SmartDialog.showLoading();
+    sentRequestInfo = [];
+    setState(() {
+      isLoading = true;
+    });
+    await getEthToInr();
+    List<dynamic> requestList;
+    if (connectedWithMetamask) {
+      requestList = await model2.mySentRequest();
+    } else {
+      requestList = await model.mySentRequest();
+    }
+
+    List<dynamic> temp;
+    var pri;
+    for (int i = 0; i < requestList.length; i++) {
+      if (connectedWithMetamask) {
+        temp = await model2.requestInfo(requestList[i]);
+        pri = await model2.landPrice(temp[3]);
+      } else {
+        temp = await model.requestInfo(requestList[i]);
+        pri = await model.landPrice(temp[3]);
+      }
+      prices.add(pri);
+      sentRequestInfo.add(temp);
+      isLoading = false;
+
+      // SmartDialog.dismiss();
+      setState(() {});
+    }
+
+   // screen = 5;
+    isLoading = false;
+
+    // SmartDialog.dismiss();
+    setState(() {});
+  }
+
+  getMyReceivedRequest() async {
+    receivedRequestInfo = [];
+    setState(() {
+      isLoading = true;
+    });
+    List<dynamic> requestList;
+    if (connectedWithMetamask) {
+      requestList = await model2.myReceivedRequest();
+    } else {
+      requestList = await model.myReceivedRequest();
+    }
+
+    List<dynamic> temp;
+    for (int i = 0; i < requestList.length; i++) {
+      if (connectedWithMetamask) {
+        temp = await model2.requestInfo(requestList[i]);
+      } else {
+        temp = await model.requestInfo(requestList[i]);
+      }
+      receivedRequestInfo.add(temp);
+      isLoading = false;
+      setState(() {});
+    }
+    isLoading = false;
+  //  screen = 4;
+    setState(() {});
+  }
+
+  Future<void> getProfileInfo() async {
+    // setState(() {
+    //   isLoading = true;
+    // });
+    if (connectedWithMetamask) {
+      userInfo = await model2.myProfileInfo();
+    } else {
+      userInfo = await model.myProfileInfo();
+    }
+    name = userInfo[1];
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  String docuName = "";
+  late PlatformFile documentFile;
+  String cid = "", docUrl = "";
+  bool isFilePicked = false;
+
+  pickDocument() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'pdf'],
+    );
+
+    if (result != null) {
+      isFilePicked = true;
+      docuName = result.files.single.name;
+      documentFile = result.files.first;
+    }
+    setState(() {});
+  }
+
+  Future<bool> uploadDocument() async {
+    String url = "https://api.nft.storage/upload";
+    var header = {"Authorization": "Bearer $nftStorageApiKey"};
+
+    if (isFilePicked) {
+      try {
+        final response = await http.post(Uri.parse(url),
+            headers: header, body: documentFile.bytes);
+        var data = jsonDecode(response.body);
+        //print(data);
+        if (data['ok']) {
+          cid = data["value"]["cid"];
+          docUrl = "https://" + cid + ".ipfs.dweb.link";
+
+          return true;
+        }
+      } catch (e) {
+        print(e);
+        showToast("Something went wrong,while document uploading",
+            context: context, backgroundColor: Colors.red);
+      }
+    } else {
+      showToast("Choose Document",
+          context: context, backgroundColor: Colors.red);
+      return false;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     model = Provider.of<LandRegisterModel>(context);
@@ -226,15 +357,15 @@ class _UserDashBoardState extends State<UserDashBoard> {
       body: Row(
         children: [
           isDesktop ? drawer2() : Container(),
-          // if (screen == 0)
-          //   userProfile()
-          // else if (screen == 1)
+          if (screen == 0)
+            userProfile()
+          else if (screen == 1)
           //   addLand()
           // else if (screen == 2)
           //   myLands()
-          if (screen == 3)
-            landGallery()
-          else if (screen == 4)
+          // else if (screen == 3)
+          //   landGallery()
+          // else if (screen == 4)
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(25),
@@ -252,6 +383,289 @@ class _UserDashBoardState extends State<UserDashBoard> {
       ),
     );
   }
+
+Widget sentRequest() {
+   
+    return ListView.builder(
+      itemCount: sentRequestInfo == null ? 1 : sentRequestInfo.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0) {
+          return Column(
+            children: [
+              const Divider(
+                height: 15,
+              ),
+              Row(
+                children: const [
+                  Expanded(
+                    child: Text(
+                      '#',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    flex: 1,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Land Id',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    flex: 1,
+                  ),
+                  Expanded(
+                      child: Center(
+                        child: Text('Owner Address',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      flex: 5),
+                  Expanded(
+                    child: Center(
+                      child: Text('Status',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('Price(in ₹)',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('Make Payment',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 2,
+                  )
+                ],
+              ),
+              const Divider(
+                height: 15,
+              )
+            ],
+          );
+        }
+        index -= 1;
+        List<dynamic> data = sentRequestInfo[index];
+        return Container(
+          height: 60,
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 1)),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text((index + 1).toString()),
+                flex: 1,
+              ),
+              Expanded(child: Center(child: Text(data[3].toString())), flex: 1),
+              Expanded(
+                  child: Center(
+                    child: Text(data[1].toString()),
+                  ),
+                  flex: 5),
+              Expanded(
+                  child: Center(
+                    child: Text(requestStatus[data[4].toString()].toString()),
+                  ),
+                  flex: 3),
+              Expanded(
+                  child: Center(
+                    child: Text(prices[index].toString()),
+                  ),
+                  flex: 2),
+              Expanded(
+                  child: Center(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.green),
+                        onPressed: data[4].toString() != '1'
+                            ? null
+                            : () async {
+                                _paymentDialog(
+                                    data[2],
+                                    data[1],
+                                    prices[index].toString(),
+                                    double.parse(prices[index].toString()) /
+                                        ethToInr,
+                                    ethToInr,
+                                    data[0]);
+                                // SmartDialog.showLoading();
+                                // try {
+                                //   //await model.rejectRequest(data[0]);
+                                //   //await getMyReceivedRequest();
+                                // } catch (e) {
+                                //   print(e);
+                                // }
+                                //
+                                // //await Future.delayed(Duration(seconds: 2));
+                                // SmartDialog.dismiss();
+                              },
+                        child: const Text('Make Payment')),
+                  ),
+                  flex: 2),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget receivedRequest() {
+    
+    return ListView.builder(
+      itemCount:
+          receivedRequestInfo == null ? 1 : receivedRequestInfo.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0) {
+          return Column(
+            children: [
+              const Divider(
+                height: 15,
+              ),
+              Row(
+                children: const [
+                  Expanded(
+                    child: Text(
+                      '#',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    flex: 1,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Land Id',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    flex: 1,
+                  ),
+                  Expanded(
+                      child: Center(
+                        child: Text('Buyer Address',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      flex: 5),
+                  Expanded(
+                    child: Center(
+                      child: Text('Status',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('Payment Done',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('Reject',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('Accept',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    flex: 2,
+                  )
+                ],
+              ),
+              const Divider(
+                height: 15,
+              )
+            ],
+          );
+        }
+        index -= 1;
+        List<dynamic> data = receivedRequestInfo[index];
+        return Container(
+          height: 60,
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 1)),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text((index + 1).toString()),
+                flex: 1,
+              ),
+              Expanded(child: Center(child: Text(data[3].toString())), flex: 1),
+              Expanded(
+                  child: Center(
+                    child: Text(data[2].toString()),
+                  ),
+                  flex: 5),
+              Expanded(
+                  child: Center(
+                    child: Text(requestStatus[data[4].toString()].toString()),
+                  ),
+                  flex: 3),
+              Expanded(child: Center(child: Text(data[5].toString())), flex: 2),
+              Expanded(
+                  child: Center(
+                    child: ElevatedButton(
+                        style:
+                            ElevatedButton.styleFrom(primary: Colors.redAccent),
+                        onPressed: data[4].toString() != '0'
+                            ? null
+                            : () async {
+                                SmartDialog.showLoading();
+                                try {
+                                  if (connectedWithMetamask) {
+                                    await model2.rejectRequest(data[0]);
+                                  } else {
+                                    await model.rejectRequest(data[0]);
+                                  }
+                                  await getMyReceivedRequest();
+                                } catch (e) {
+                                  print(e);
+                                }
+
+                                //await Future.delayed(Duration(seconds: 2));
+                                SmartDialog.dismiss();
+                              },
+                        child: const Text('Reject')),
+                  ),
+                  flex: 2),
+              Expanded(
+                  child: Center(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.greenAccent),
+                        onPressed: data[4].toString() != '0'
+                            ? null
+                            : () async {
+                                SmartDialog.showLoading();
+                                try {
+                                  if (connectedWithMetamask) {
+                                    await model2.acceptRequest(data[0]);
+                                  } else {
+                                    await model.acceptRequest(data[0]);
+                                  }
+                                  await getMyReceivedRequest();
+                                } catch (e) {
+                                  print(e);
+                                }
+
+                                //await Future.delayed(Duration(seconds: 2));
+                                SmartDialog.dismiss();
+                              },
+                        child: const Text('Accept')),
+                  ),
+                  flex: 2),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
   Widget landGallery() {
     if (isLoading) {
       return const Expanded(child: Center(child: CircularProgressIndicator()));
@@ -289,7 +703,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
                 if (isUserVerified) {
                   SmartDialog.showLoading();
                   try {
-                    if (!connectedWithMetamask) {
+                    if (connectedWithMetamask) {
                       await model2.sendRequestToBuy(LandGall[index][0]);
                     } else {
                       await model.sendRequestToBuy(LandGall[index][0]);
@@ -335,6 +749,393 @@ class _UserDashBoardState extends State<UserDashBoard> {
       ),
     );
   }
+
+  Widget myLands() {
+    if (isLoading) {
+      return const Expanded(child: Center(child: CircularProgressIndicator()));
+    }
+    if (landInfo.isEmpty) {
+      return const Expanded(
+          child: Center(
+              child: Text(
+        'No Lands Added yet',
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+      )));
+    }
+    return Expanded(
+      child: Center(
+        child: SizedBox(
+          width: isDesktop ? 900 : width,
+          child: GridView.builder(
+            padding: const EdgeInsets.all(10),
+            scrollDirection: Axis.vertical,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 440,
+                crossAxisCount: isDesktop ? 2 : 1,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
+            itemCount: landInfo.length,
+            itemBuilder: (context, index) {
+              return landWid(
+                  landInfo[index][10],
+                  landInfo[index][1].toString(),
+                  landInfo[index][2].toString(),
+                  landInfo[index][3].toString(),
+                  landInfo[index][8],
+                  () =>
+                      confirmDialog('Are you sure to make it on sell?', context,
+                          () async {
+                        SmartDialog.showLoading();
+                        if (connectedWithMetamask) {
+                          await model2.makeForSell(landInfo[index][0]);
+                        } else {
+                          await model.makeForSell(landInfo[index][0]);
+                        }
+                        Navigator.pop(context);
+                        await getLandInfo();
+                        SmartDialog.dismiss();
+                      }));
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget addLand() {
+    return Center(
+      widthFactor: isDesktop ? 2 : 1,
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            //color: Color(0xFFBb3b3cc),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: Border.all()),
+        width: width,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            // scrollDirection: Axis.vertical,
+            // shrinkWrap: true,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: TextFormField(
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onChanged: (val) {
+                    area = val;
+                  },
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                  ],
+                  decoration: const InputDecoration(
+                    isDense: true, // Added this
+                    contentPadding: EdgeInsets.all(12),
+                    border: OutlineInputBorder(),
+                    labelText: 'Area(SqFt)',
+                    hintText: 'Enter Area in SqFt',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: CompositedTransformTarget(
+                  link: _layerLink,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Land Address';
+                      }
+                      return null;
+                    },
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                    controller: addressController,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        autocomplete(value);
+                        _overlayEntry.remove();
+                        _overlayEntry = _createOverlayEntry();
+                        Overlay.of(context)!.insert(_overlayEntry);
+                      } else {
+                        if (predictions.isNotEmpty && mounted) {
+                          setState(() {
+                            predictions = [];
+                          });
+                        }
+                      }
+                    },
+                    focusNode: _focusNode,
+                    //obscureText: true,
+                    decoration: const InputDecoration(
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(12),
+                      border: OutlineInputBorder(),
+                      labelText: 'Address',
+                      hintText: 'Enter Land Address',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Land Price';
+                    }
+                    return null;
+                  },
+                  //maxLength: 12,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                  ],
+                  onChanged: (val) {
+                    landPrice = val;
+                  },
+                  //obscureText: true,
+                  decoration: const InputDecoration(
+                    isDense: true, // Added this
+                    contentPadding: EdgeInsets.all(12),
+                    border: OutlineInputBorder(),
+                    labelText: 'Land Price',
+                    hintText: 'Enter Land Price in ₹',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter PID';
+                    }
+                    return null;
+                  },
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                  //maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                  ],
+                  onChanged: (val) {
+                    propertyID = val;
+                  },
+                  //obscureText: true,
+                  decoration: const InputDecoration(
+                    isDense: true, // Added this
+                    contentPadding: EdgeInsets.all(12),
+                    border: OutlineInputBorder(),
+                    labelText: 'PID',
+                    hintText: 'Enter Property ID',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onChanged: (val) {
+                    surveyNo = val;
+                  },
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                  //obscureText: true,
+                  decoration: const InputDecoration(
+                    isDense: true, // Added this
+                    contentPadding: EdgeInsets.all(12),
+                    border: OutlineInputBorder(),
+                    labelText: 'Survey No.',
+                    hintText: 'Survey No.',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: MaterialButton(
+                  color: Colors.grey,
+                  onPressed: () async {
+                    allLatiLongi = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const landOnMap()));
+                    if (allLatiLongi.isEmpty || allLatiLongi == "") {
+                      showToast("Please select area on map",
+                          context: context, backgroundColor: Colors.red);
+                    }
+                    //print(res);
+                  },
+                  child: const Text('Draw Land on Map'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    MaterialButton(
+                      color: Colors.grey,
+                      onPressed: pickDocument,
+                      child: const Text('Upload Document'),
+                    ),
+                    Text(docuName)
+                  ],
+                ),
+              ),
+              CustomButton(
+                  'Add',
+                  isLoading || !isUserVerified
+                      ? null
+                      : () async {
+                          if (_formKey.currentState!.validate() &&
+                              allLatiLongi.isNotEmpty &&
+                              allLatiLongi != "") {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            try {
+                              SmartDialog.showLoading(
+                                  msg: "Uploading Document");
+                              bool isFileupload = await uploadDocument();
+                              SmartDialog.dismiss();
+                              if (isFileupload) {
+                                if (connectedWithMetamask) {
+                                  await model2.addLand(
+                                      area,
+                                      addressController.text,
+                                      allLatiLongi,
+                                      landPrice,
+                                      propertyID,
+                                      surveyNo,
+                                      docUrl);
+                                } else {
+                                  await model.addLand(
+                                      area,
+                                      addressController.text,
+                                      allLatiLongi,
+                                      landPrice,
+                                      propertyID,
+                                      surveyNo,
+                                      docUrl);
+                                }
+                                showToast("Land Successfully Added",
+                                    context: context,
+                                    backgroundColor: Colors.green);
+                                isFilePicked = false;
+                              }
+                            } catch (e) {
+                              print(e);
+                              showToast("Something Went Wrong",
+                                  context: context,
+                                  backgroundColor: Colors.red);
+                            }
+
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+
+                          //model.makePaymentTestFun();
+                        }),
+              if (!isUserVerified)
+                const Text('You are not verified',
+                    style: TextStyle(color: Colors.redAccent)),
+              isLoading ? spinkitLoader : Container()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget userProfile() {
+    if (isLoading) {
+      return const Expanded(child: Center(child: CircularProgressIndicator()));
+    }
+    isUserVerified = userInfo[8];
+    return Expanded(
+      child: Center(
+        child: Container(
+          width: width,
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              //color: Color(0xFFBb3b3cc),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all()),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Your Profile',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              userInfo[8]
+                  ? Row(
+                      children: const [
+                        Text(
+                          'Verified',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.green),
+                        ),
+                        Icon(
+                          Icons.verified,
+                          color: Colors.green,
+                        )
+                      ],
+                    )
+                  : const Text(
+                      'Not Yet Verified',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueAccent),
+                    ),
+              CustomTextFiled(userInfo[0].toString(), 'Wallet Address'),
+              CustomTextFiled(userInfo[1].toString(), 'Name'),
+              CustomTextFiled(userInfo[2].toString(), 'Age'),
+              CustomTextFiled(userInfo[3].toString(), 'City'),
+              CustomTextFiled(userInfo[4].toString(), 'Adhar Number'),
+              CustomTextFiled(userInfo[5].toString(), 'Pan'),
+              TextButton(
+                onPressed: () {
+                  launchUrl(userInfo[6].toString());
+                },
+                child: const Text(
+                  '  View Document',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              CustomTextFiled(userInfo[7].toString(), 'Mail'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget drawer2() {
     return Container(
       decoration: const BoxDecoration(
@@ -390,6 +1191,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
                         '/',
                       );
                     }
+                    if (index == 0) getProfileInfo();
                     if (index == 2) getLandInfo();
                     if (index == 3) getLandGallery();
                     if (index == 4) getMyReceivedRequest();
@@ -408,5 +1210,117 @@ class _UserDashBoardState extends State<UserDashBoard> {
         ],
       ),
     );
+  }
+
+  _paymentDialog(buyerAdd, sellAdd, amountINR, total, ethval, reqID) async {
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Dialog(
+              backgroundColor: Colors.white,
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                height: 430.0,
+                width: 320,
+                child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      'Confirm Payment',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      buyerAdd.toString(),
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Icon(
+                      Icons.arrow_circle_down,
+                      size: 30,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      sellAdd.toString(),
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Total Amount in ₹",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      amountINR,
+                      style: const TextStyle(fontSize: 30),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      '1 ETH = ' + ethval.toString() + '₹',
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
+                      "Total ETH:",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      total.toString(),
+                      style: const TextStyle(fontSize: 30),
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomButton3('Cancel', () {
+                          Navigator.of(context).pop();
+                        }, Colors.white),
+                        CustomButton3('Confirm', () async {
+                          SmartDialog.showLoading();
+                          try {
+                            if (connectedWithMetamask) {
+                              await model2.makePayment(reqID, total);
+                            } else {
+                              await model.makePayment(reqID, total);
+                            }
+                            await getMySentRequest();
+                            showToast("Payment Success",
+                                context: context,
+                                backgroundColor: Colors.green);
+                          } catch (e) {
+                            print(e);
+                            showToast("Something Went Wrong",
+                                context: context, backgroundColor: Colors.red);
+                          }
+                          SmartDialog.dismiss();
+                          Navigator.of(context).pop();
+                        }, Colors.blue)
+                      ],
+                    )
+                  ],
+                ),
+              ));
+        });
   }
 }

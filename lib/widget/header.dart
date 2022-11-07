@@ -54,7 +54,7 @@ class HeaderWidget extends StatelessWidget {
               //                 )));
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/guest',
+                  Navigator.of(context).pushNamed('/guestr',
                   arguments: "guest",
                   );
                 },
@@ -66,7 +66,7 @@ class HeaderWidget extends StatelessWidget {
                     appContainer?.style.cursor = 'default';
                   },
                   child: const Text(
-                    'Guest',
+                    '',
                     style: TextStyle(
                       fontFamily: 'Quicksand',
                       color: Color(0xff28313b),
